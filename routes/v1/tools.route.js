@@ -49,7 +49,7 @@ router.route('/')
 
 
 router.route('/:id')
-    .get(count, toolController.toolDetails)
+    .get(toolController.toolDetails)
 
 
 module.exports = router;

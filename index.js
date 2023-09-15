@@ -7,6 +7,7 @@ const count = require('./middleware/viewCount');
 const express = require('express');
 const cors = require('cors');
 
+
 // Creating App
 const app = express();
 app.use(cors());
