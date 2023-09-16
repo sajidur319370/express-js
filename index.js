@@ -45,3 +45,12 @@ app.all('*', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is runnin on ${port}`);
 })
+
+process.on('unhandledRejection', (error) => {
+    console.log("Error name:", error.name);
+    console.log("Error message:", error.message);
+    app.close(() => {
+        process.exit(1);
+    })
+
+});
