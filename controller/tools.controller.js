@@ -1,14 +1,10 @@
-const tools =
-    [{ "id": 1, "name": "Karalynn" },
+let tools = [
+    { "id": 1, "name": "Karalynn" },
     { "id": 2, "name": "Willdon" },
     { "id": 3, "name": "Vivienne" },
     { "id": 4, "name": "Hannie" },
     { "id": 5, "name": "Corabella" },
-    { "id": 6, "name": "Suki" },
-    { "id": 7, "name": "Carly" },
-    { "id": 8, "name": "Aprilette" },
-    { "id": 9, "name": "Will" },
-    { "id": 10, "name": "Collin" }];
+]
 
 
 
@@ -21,7 +17,8 @@ module.exports.getAllTools = (req, res) => {
 }
 
 module.exports.saveAtool = (req, res) => {
-    res.send("tools added");
+    console.log(req.body);
+    res.send("Saved");
 }
 
 module.exports.toolDetails = (req, res) => {
@@ -29,4 +26,21 @@ module.exports.toolDetails = (req, res) => {
     //console.log(id);
     const foundTool = tools.find(tool => tool.id === Number(id))
     res.send(foundTool);
+}
+module.exports.updateTool = (req, res) => {
+
+    const { id } = req.params;
+    const newData = tools.find(tool => tool.id === Number(id));
+    newData.id = id;
+    newData.name = req.body.name;
+
+    res.send(newData);
+
+}
+
+module.exports.deleteTool = (req, res) => {
+    const { id } = req.params;
+    tools = tools.filter(tool => tool.id !== Number(id));
+    res.send(tools)
+
 }

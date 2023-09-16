@@ -6,12 +6,15 @@ const count = require('./middleware/viewCount');
 // imported package
 const express = require('express');
 const cors = require('cors');
+const { dirname } = require("path");
 
 
-// Creating App
+// Creating App with middleware
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+// app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 // Creating Port
 const port = 8080;
@@ -24,6 +27,16 @@ dbConnect();
 // CRUD opearation
 app.use('/api/v1/tools', toolsRoute);
 
+app.get("/", (req, res) => {
+
+    // res.sendFile(__dirname + '/public/test.html')
+    res.render('home.ejs', {
+        id: '09',
+        user: {
+            name: 'Sajid',
+        }
+    })
+})
 
 app.all('*', (req, res) => {
     res.send("No route found!")

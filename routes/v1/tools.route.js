@@ -50,6 +50,8 @@ router.route('/')
 
 router.route('/:id')
     .get(toolController.toolDetails)
+    .patch(toolController.updateTool)
+    .delete(toolController.deleteTool)
 
 
 module.exports = router;
